@@ -1,0 +1,102 @@
+- name: simplex
+  type: table
+  desc: Provides functions for generating Simplex noise.
+  members:
+
+  - name: seed
+    type: function
+    desc: Sets the seed for the noise generator.
+    parameters:
+    - name: seed
+      type: number
+      desc: The integer seed value.
+
+  - name: noise2
+    type: function
+    desc: Computes 2D Simplex noise, optionally with fractal parameters.
+    parameters:
+    - name: x
+      type: number
+      desc: The x-coordinate.
+    - name: y
+      type: number
+      desc: The y-coordinate.
+    - name: octaves
+      type: number
+      desc: Number of noise layers (must be > 0). Defaults to 1.
+      optional: true
+    - name: persistence
+      type: number
+      desc: Amplitude decrease per octave. Defaults to 0.5.
+      optional: true
+    - name: lacunarity
+      type: number
+      desc: Frequency increase per octave. Defaults to 2.0.
+      optional: true
+    returns:
+    - name: noise_value
+      type: number
+      desc: The calculated noise value. Output range is [0, 1].
+
+  - name: noise3
+    type: function
+    desc: Computes 3D Simplex noise, optionally with fractal parameters.
+    parameters:
+    - name: x
+      type: number
+      desc: The x-coordinate.
+    - name: y
+      type: number
+      desc: The y-coordinate.
+    - name: z
+      type: number
+      desc: The z-coordinate.
+    - name: octaves
+      type: number
+      desc: Number of noise layers (must be > 0). Defaults to 1.
+      optional: true
+    - name: persistence
+      type: number
+      desc: Amplitude decrease per octave. Defaults to 0.5.
+      optional: true
+    - name: lacunarity
+      type: number
+      desc: Frequency increase per octave. Defaults to 2.0.
+      optional: true
+    returns:
+    - name: noise_value
+      type: number
+      desc: The calculated noise value. Output range is [0, 1].
+
+  - name: noise4
+    type: function
+    desc: Computes 4D Simplex noise, optionally with fractal parameters.
+    parameters:
+    - name: x
+      type: number
+      desc: The x-coordinate.
+    - name: y
+      type: number
+      desc: The y-coordinate.
+    - name: z
+      type: number
+      desc: The z-coordinate.
+    - name: w
+      type: number
+      desc: The w-coordinate.
+    - name: octaves
+      type: number
+      desc: Number of noise layers (must be > 0). Defaults to 1.
+      optional: true
+    - name: persistence
+      type: number
+      desc: Amplitude decrease per octave. Defaults to 0.5.
+      optional: true
+    - name: lacunarity
+      type: number
+      desc: Frequency increase per octave. Defaults to 2.0.
+      optional: true
+    returns:
+    - name: noise_value
+      type: number
+      desc: The calculated noise value. Output range is [0, 1].

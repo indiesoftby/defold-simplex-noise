@@ -1,0 +1,21 @@
+name: "main"
+scale_along_z: 0
+embedded_instances {
+  id: "main"
+  data: "components {\n"
+  "  id: \"example\"\n"
+  "  component: \"/example/example.script\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "debug_view"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/builtins/assets/meshes/quad.dae\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
