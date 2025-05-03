@@ -1,10 +1,10 @@
 # Simplex Noise for Defold
 
-This extension for [the Defold game engine](https://defold.com/) provides a way to generate Simplex noise. Simplex noise is Ken Perlin's successor to classical Perlin noise that ends up doing quite a lot fewer calculations to get similar noise results.
+This extension for [the Defold game engine](https://defold.com/) provides functions to generate Simplex noise. Simplex noise is Ken Perlin's successor to classical Perlin noise that ends up doing quite a lot fewer calculations to get similar noise results.
 
 The noise can be used as the basis for texture effects but also for animation, generating terrain heightmaps and many other things.
 
-If you are looking for an equivalent to Unity's `Mathf.PerlinNoise` function, you've found it! While `simplex.noise2` won't produce the exact same numerical output as the Unity function (as it uses Simplex noise, not classic Perlin noise), it behaves identically in principle for generating 2D coherent noise patterns. Furthermore, this extension offers greater flexibility through adjustable parameters like octaves, persistence, and lacunarity.
+If you are looking for an equivalent to Unity's `Mathf.PerlinNoise` function, you've found it! While `simplex.noise2` won't produce the exact same numerical output as the Unity function (as it uses Simplex noise, not classic Perlin noise), it behaves identically in principle for generating 2D coherent noise patterns. Furthermore, this extension offers greater flexibility through adjustable parameters like octaves, persistence, and lacunarity. And the most important thing - it's FAST! ⚡️
 
 ## Setup
 
@@ -25,7 +25,7 @@ function init(self)
 end
 ```
 
-Check out the [API](#api) and the included example for more information.
+Check out the [API](#api) and the included example for more information. There is an online demo of the included example - [here](https://indiesoftby.github.io/defold-simplex-noise/).
 
 ## API
 
