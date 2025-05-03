@@ -1,11 +1,107 @@
+--- Calculates and sets camera zoom to maintain aspect ratio
+local function camera_update_zoom(self)
+    local display_width = sys.get_config_int("display.width")
+    local display_height = sys.get_config_int("display.height")
+    local window_width,window_height = window.get_size()
+    local scale = window.get_display_scale()
+    local zoom = math.min(window_width / scale / display_width, window_height / scale / display_height)
+    go.set("/camera#camera", "orthographic_zoom", zoom)
+end
+
+--- Fills the noise texture buffer with new values based on the current position and scale.
+local function noise_fill_stream(data)
+    local stream = data.stream
+    local i = 1
+    local h = data.height
+    local w = data.width
+    local scale = data.scale
+    for y = 1, h do
+        for x = 1, w do
+            local v = simplex.noise2(data.x + x * scale, data.y + y * scale) * 255
+            stream[i + 0] = v -- R
+            stream[i + 1] = v -- G
+            stream[i + 2] = v -- B
+            stream[i + 3] = 255 -- A
+
+            i = i + 4
+        end
+    end
+end
+
+--- Initializes the noise texture. Returns initialized data.
+local function noise_init()
+    local data = {
+        x = 0,
+        y = 0,
+        scale = 0.05,
+        width = 128,
+        height = 128,
+
+        texture_path = "/example/noise_texture.texturec"
+    }
+
+    local buf = buffer.create(data.width * data.height, { { name=hash("rgba"), type=buffer.VALUE_TYPE_UINT8, count=4 } } )
+    local stream = buffer.get_stream(buf, hash("rgba"))
+    data.buffer = buf
+    data.stream = stream
+
+    noise_fill_stream(data)
+
+    data.texture_params = {
+        width  = data.width,
+        height = data.height,
+        type   = resource.TEXTURE_TYPE_2D,
+        format = resource.TEXTURE_FORMAT_RGBA,
+        num_mip_maps = 1,
+        min_filter = graphics.TEXTURE_FILTER_LINEAR,
+        mag_filter = graphics.TEXTURE_FILTER_LINEAR,
+    }
+
+    local texture_id = resource.create_texture(data.texture_path, data.texture_params, buf)
+    go.set("/debug_view#model", "texture0", texture_id)
+
+    return data
+end
+
+--- Updates the noise texture with new values based on time.
+local function noise_update(data, dt)
+    data.x = data.x + 1 * dt
+
+    noise_fill_stream(data)
+
+    resource.set_texture(data.texture_path, data.texture_params, data.buffer)
+end
+
+--- Calculates and displays the current frames per second using a rolling average.
+local function fps_update(self)
+    -- fps meter is from examples/bunnymark
+    if not self.frames then
+        self.frames = {}
+    end
+    self.frames[#self.frames + 1] = socket.gettime()
+    local fps = 0
+    if #self.frames == 61 then
+        table.remove(self.frames, 1)
+        fps = 1 / ((self.frames[#self.frames] - self.frames[1]) / (#self.frames - 1))
+    end
+    label.set_text("/debug_label#label", ("FPS: %.2f"):format(fps))
+end
+
+--
+-- Script
+--
+
 function init(self)
-	
+    self.data = noise_init()
 end
 
 function final(self)
 end
 
 function update(self, dt)
+    camera_update_zoom(self)
+    noise_update(self.data, dt)
+    fps_update(self)
 end
 
 function on_message(self, message_id, message, sender)

@@ -33,7 +33,7 @@ Check out the [API](#api) and the included example for more information.
 Sets the seed for the noise generator.
 
 **Parameters:**
- * `seed` <kbd>(number): The integer seed value.
+ * `seed` <kbd>(number)</kbd>: The integer seed value.
 
 ### `simplex.noise2(x, y [, octaves [, persistence [, lacunarity]]])`
 Computes 2D Simplex noise, optionally with fractal parameters.
@@ -41,8 +41,8 @@ Computes 2D Simplex noise, optionally with fractal parameters.
 **Parameters:**
  * `x` <kbd>(number)</kbd>: The x-coordinate.
  * `y` <kbd>(number)</kbd>: The y-coordinate.
- * `octaves` <kbd>(number, optional)</kbd>: Number of noise layers (must be > 0). Defaults to 1.
- * `persistence` <kbd>(number, optional)</kbd>: Amplitude decrease per octave. Defaults to 0.5.
+ * `octaves` <kbd>(integer, optional)</kbd>: Number of noise layers (must be > 0). Defaults to 1. It describes the number of loops that the code is run - making for finer and finer detail.
+ * `persistence` <kbd>(number, optional)</kbd>: Amplitude decrease per octave. Defaults to 0.5. Describes the maximum disturbance from the undisturbed position of a wave.
  * `lacunarity` <kbd>(number, optional)</kbd>: Frequency increase per octave. Defaults to 2.0.
 
 **Returns:**
@@ -55,8 +55,8 @@ Computes 3D Simplex noise, optionally with fractal parameters.
  * `x` <kbd>(number)</kbd>: The x-coordinate.
  * `y` <kbd>(number)</kbd>: The y-coordinate.
  * `z` <kbd>(number)</kbd>: The z-coordinate.
- * `octaves` <kbd>(number, optional)</kbd>: Number of noise layers (must be > 0). Defaults to 1.
- * `persistence` <kbd>(number, optional)</kbd>: Amplitude decrease per octave. Defaults to 0.5.
+ * `octaves` <kbd>(integer, optional)</kbd>: Number of noise layers (must be > 0). Defaults to 1. It describes the number of loops that the code is run - making for finer and finer detail.
+ * `persistence` <kbd>(number, optional)</kbd>: Amplitude decrease per octave. Defaults to 0.5. Describes the maximum disturbance from the undisturbed position of a wave.
  * `lacunarity` <kbd>(number, optional)</kbd>: Frequency increase per octave. Defaults to 2.0.
 
 **Returns:**
@@ -70,8 +70,8 @@ Computes 4D Simplex noise, optionally with fractal parameters.
  * `y` <kbd>(number)</kbd>: The y-coordinate.
  * `z` <kbd>(number)</kbd>: The z-coordinate.
  * `w` <kbd>(number)</kbd>: The w-coordinate.
- * `octaves` <kbd>(number, optional)</kbd>: Number of noise layers (must be > 0). Defaults to 1.
- * `persistence` <kbd>(number, optional)</kbd>: Amplitude decrease per octave. Defaults to 0.5.
+ * `octaves` <kbd>(integer, optional)</kbd>: Number of noise layers (must be > 0). Defaults to 1. It describes the number of loops that the code is run - making for finer and finer detail.
+ * `persistence` <kbd>(number, optional)</kbd>: Amplitude decrease per octave. Defaults to 0.5. Describes the maximum disturbance from the undisturbed position of a wave.
  * `lacunarity` <kbd>(number, optional)</kbd>: Frequency increase per octave. Defaults to 2.0.
 
 **Returns:**
