@@ -23,6 +23,8 @@ jobs:
       - name: Build 🔧
         env:
           DEFOLD_BOB_SHA1: ${{ secrets.DEFOLD_BOB_SHA1 }}
+          PLATFORM: js-web
+          ARCHITECTURES: wasm-web
         run: |
           lsb_release -a
 
@@ -35,20 +37,20 @@ jobs:
           java -jar build/bundle/bob.jar --version
 
           # Build the project
-          java -jar build/bundle/bob.jar --email a@b.com --auth 123 --texture-compression true --bundle-output build/bundle/js-web --platform js-web --architectures wasm-web --archive --variant debug resolve build bundle
+          java -jar build/bundle/bob.jar --email a@b.com --auth 123 --texture-compression true --bundle-output build/bundle/${PLATFORM} --platform ${PLATFORM} --architectures ${ARCHITECTURES} --archive --variant debug resolve build bundle
 
           # Move to the public directory
-          mv build/bundle/js-web/* build/bundle/public
+          mv build/bundle/${PLATFORM}/* build/bundle/public
 
-      - name: Upload Artifact 📦
-        uses: actions/upload-artifact@v4
-        with:
-          name: bundle
-          path: build/bundle/public
-
-      # - name: Deploy to Pages 🚀
-      #   uses: JamesIves/github-pages-deploy-action@v4
+      # - name: Upload Artifact 📦
+      #   uses: actions/upload-artifact@v4
       #   with:
-      #     branch: gh-pages
-      #     folder: build/bundle/public
-      #   if: github.ref == 'refs/heads/main'
+      #     name: bundle
+      #     path: build/bundle/public
+
+      - name: Deploy to Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: build/bundle/public
+        if: github.ref == 'refs/heads/main'
