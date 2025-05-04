@@ -37,7 +37,7 @@ jobs:
           java -jar build/bundle/bob.jar --version
 
           # Build the project
-          java -jar build/bundle/bob.jar --email a@b.com --auth 123 --texture-compression true --bundle-output build/bundle/${PLATFORM} --platform ${PLATFORM} --architectures ${ARCHITECTURES} --archive --variant debug resolve build bundle
+          java -jar build/bundle/bob.jar --email a@b.com --auth 123 --texture-compression true --bundle-output build/bundle/${PLATFORM} --platform ${PLATFORM} --architectures ${ARCHITECTURES} --archive --variant release resolve build bundle
 
           # Move to the public directory
           mv build/bundle/${PLATFORM}/* build/bundle/public
