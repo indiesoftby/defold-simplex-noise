@@ -1,3 +1,5 @@
+[![Simplex Noise Cover](cover.jpg)](https://github.com/indiesoftby/defold-simplex-noise)
+
 # Simplex Noise for Defold
 
 This extension for [the Defold game engine](https://defold.com/) provides functions to generate Simplex noise. Simplex noise is Ken Perlin's successor to classical Perlin noise that ends up doing quite a lot fewer calculations to get similar noise results.
